@@ -36,16 +36,19 @@ useEffect(() => {
     console.log(taskToMove);
     const otherTasks: Task[] = tasks.filter((_: Task, index: number) => index !== activeCard);
 
+    // if(activeCard === position) return; 
+    if(position - activeCard === 1) return;
     otherTasks.splice(position, 0, {
         ...taskToMove,
         status: status,
     });
 
     setTasks(otherTasks);
+    setActiveCard(null)
   };
 
   return (
-    <section className="flex w-full h-full p-10 gap-3 justify-center">
+    <section className="flex w-full h-full p-10 gap-3 overflow-scroll">
       <Column 
         title="To do"
         tasks={tasks}

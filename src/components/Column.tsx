@@ -18,7 +18,7 @@ interface ColumnProps {
 const Column: React.FC<ColumnProps> = ({ title, tasks, status, handleDelete, setActiveCard, onDrop }) => {
     const filteredTasks = tasks.filter((task) => task.status === status);
   return (
-    <div className={`w-full h-fit flex flex-col gap-5 rounded-sm shadow border-t-4 bg-white ${status == 'done' ? "border-t-green-200" : status == 'doing' ? "border-t-amber-200" : status == 'review' ? "border-t-purple-200" : "border-t-blue-200"} border-[1px] border-gray-300/20 py-5 px-2`}>
+    <div className={`w-56 h-fit flex flex-col gap-5 rounded-sm shadow border-t-4 bg-white ${status == 'done' ? "border-t-green-200" : status == 'doing' ? "border-t-amber-200" : status == 'review' ? "border-t-purple-200" : "border-t-blue-200"} border-[1px] border-gray-300/20 py-5 px-2 shrink-0`}>
         <header className="flex justify-between items-center">
             <p className="font-semibold">{title} <span className="font-normal text-gray-400">{`(${filteredTasks.length})`}</span></p>
             {/* <Button /> */}
@@ -34,6 +34,7 @@ const Column: React.FC<ColumnProps> = ({ title, tasks, status, handleDelete, set
                                 title={task.title}
                                 handleDelete={handleDelete}
                                 index={index}
+                                status={status}
                                 setActiveCard={setActiveCard}
                             />
                             <DropArea onDrop={() => onDrop(status, index + 1)} status={status}/>

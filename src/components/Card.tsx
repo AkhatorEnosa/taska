@@ -6,15 +6,16 @@ interface CardProps {
   handleDelete?: (id: number) => void;
   index: number;
   setActiveCard: React.Dispatch<React.SetStateAction<number | null>>;
+  status: string;
 }
 
-const Card = ({ title, setActiveCard, index }: CardProps) => {
+const Card = ({ title, setActiveCard, index, status }: CardProps) => {
     const [dragging, setDragging] = useState(false);
   return (
     <motion.div
         layout
         // layoutId={JSON.stringify(index)}
-        className={`flex flex-col gap-6 p-3 rounded-md border-[1px] border-gray-300/50 ${dragging ? "opacity-45" : "opacity-100"} hover:shadow cursor-grab`} draggable
+        className={`flex flex-col gap-6 p-3 rounded-md border-[1px] ${dragging && status == 'done' ? "border-green-200" : dragging && status == 'doing' ? "border-amber-200" : dragging && status == 'review' ? "border-purple-200" : dragging && status == 'todo' ? "border-blue-200" : "border-gray-300/70"} hover:shadow cursor-grab`} draggable
     
         onDragStart={() => { setActiveCard(index); setDragging(true); }}
         onDragEnd={() => {setActiveCard(null); setDragging(false);}}
