@@ -11,11 +11,23 @@ interface CardProps {
 
 const Card = ({ title, setActiveCard, index, status }: CardProps) => {
     const [dragging, setDragging] = useState(false);
+
+    // Define color based on status
+    const getBorderColor = () => {
+      if (!dragging) return "border-gray-300/70";
+      switch (status) {
+        case 'done': return "border-green-200";
+        case 'doing': return "border-amber-200";
+        case 'review': return "border-purple-200";
+        case 'todo': return "border-blue-200";
+        default: return "border-gray-300/70";
+      }
+    };
   return (
     <motion.div
         layout
-        // layoutId={JSON.stringify(index)}
-        className={`flex flex-col gap-6 p-3 rounded-md border-[1px] ${dragging && status == 'done' ? "border-green-200" : dragging && status == 'doing' ? "border-amber-200" : dragging && status == 'review' ? "border-purple-200" : dragging && status == 'todo' ? "border-blue-200" : "border-gray-300/70"} hover:shadow cursor-grab`} draggable
+        // layoutId={"card"}
+        className={`flex flex-col bg-white gap-6 p-3 rounded-md border-[1px] ${getBorderColor()} cursor-grabbing`} draggable
     
         onDragStart={() => { setActiveCard(index); setDragging(true); }}
         onDragEnd={() => {setActiveCard(null); setDragging(false);}}

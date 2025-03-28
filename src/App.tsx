@@ -1,4 +1,5 @@
-import Content from "./components/Content"
+import Content from "./sections/Content"
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function App() {
 
