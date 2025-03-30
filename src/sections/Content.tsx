@@ -20,10 +20,6 @@ const Content: React.FC = () => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-// useEffect(() => {
-//   console.log(tasks)
-// }, [tasks])
-
   const handleDelete = (activeCard: number) => {
     const newTasks = tasks.filter((_: Task, index: number) => index !== activeCard);
     setTasks(newTasks);
@@ -60,6 +56,7 @@ const Content: React.FC = () => {
           handleDelete={handleDelete}
           setActiveCard={setActiveCard}
           onDrop={onDrop}
+          includeButton={true}
         />
         <Column
           title="In Progress"
