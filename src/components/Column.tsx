@@ -25,16 +25,15 @@ const Column: React.FC<ColumnProps> = ({ title, tasks, status, handleDelete, set
     const filteredTasks = tasks.filter((task) => task.status === status);
 
     const handleAddTask = (taskTitle: string, description: string) => {
-      console.log(taskTitle, description);
-        // const newTask = {
-        //     id: tasks.length + 1,
-        //     title: taskTitle,
-        //     description,
-        //     status,
-        // };
-        // tasks.push(newTask);
-        // setTaskTitle("");
-        // setDescription("");
+        const newTask = {
+            id: tasks.length + 1,
+            title: taskTitle,
+            description,
+            status,
+        };
+        tasks.push(newTask);
+        setTaskTitle("");
+        setDescription("");
     };
   return (
     <div className={`w-72 h-fit flex flex-col gap-5 rounded-sm shadow border-t-4 bg-white ${status == 'done' ? "border-t-green-200" : status == 'doing' ? "border-t-amber-200" : status == 'review' ? "border-t-purple-200" : "border-t-blue-200"} border-[1px] border-gray-300/20 pt-2 px-2 shrink-0`}>
@@ -48,7 +47,7 @@ const Column: React.FC<ColumnProps> = ({ title, tasks, status, handleDelete, set
                 description={description}
                 handleTitleChange={(e) => setTaskTitle(e.target.value)}
                 handleDescriptionChange={(e) => setDescription(e.target.value)}
-                addTask={() => handleAddTask(title, description)}
+                addTask={() => handleAddTask(taskTitle, description)}
               />
             }
         </header>
