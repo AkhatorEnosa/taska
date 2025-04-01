@@ -1,6 +1,6 @@
 const Navbar = () => {
     return (
-      <div className="absolute text-sm w-full flex px-10 py-8 justify-between items-center bg-white gap-6 lg:gap-10">
+      <div className="absolute text-sm w-full flex px-10 py-6 justify-between items-center bg-white gap-6 lg:gap-10">
           <h1 className="font-extrabold tracking-tighter text-2xl">Task<span>Ka</span></h1>
   
           <ul className="header-links gap-6 flex">

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import Column from "../components/Column.tsx";
 import DEFAULT_CARDS from "../constants/tasks.ts";
-import Navbar from "./Navbar.tsx";
+import Navbar from "../nav/Navbar.tsx";
 import DeleteZone from "../components/DeleteZone.tsx";
+import Sidebar from "../nav/Sidebar.tsx";
 
 interface Task {
   id: number;
@@ -48,47 +49,48 @@ const Content: React.FC = () => {
   return (
     <>
       <Navbar />
-      <section className="flex w-full h-full mt-20 p-10 gap-3 overflow-scroll">
-        <Column 
-          title="To do"
-          tasks={tasks}
-          status="todo"
-          handleDelete={handleDelete}
-          setActiveCard={setActiveCard}
-          onDrop={onDrop}
-          includeButton={true}
-        />
-        <Column
-          title="In Progress"
-          tasks={tasks}
-          status="doing"
-          handleDelete={handleDelete}
-          setActiveCard={setActiveCard}
-          onDrop={onDrop}
-        />
-        <Column
-          title="Review"
-          tasks={tasks}
-          status="review"
-          handleDelete={handleDelete}
-          setActiveCard={setActiveCard}
-          onDrop={onDrop}
-        />
-        <Column
-          title="Done"
-          tasks={tasks}
-          status="done"
-          handleDelete={handleDelete}
-          setActiveCard={setActiveCard}
-          onDrop={onDrop}
-        />
+      <div className="flex w-full h-full gap-6 overflow-scroll">
+        <Sidebar />
+        <section className="flex mt-20 pt-10 gap-3 overflow-scroll">
+          <Column 
+            title="To do"
+            tasks={tasks}
+            status="todo"
+            handleDelete={handleDelete}
+            setActiveCard={setActiveCard}
+            onDrop={onDrop}
+            includeButton={true}
+          />
+          <Column
+            title="In Progress"
+            tasks={tasks}
+            status="doing"
+            handleDelete={handleDelete}
+            setActiveCard={setActiveCard}
+            onDrop={onDrop}
+          />
+          <Column
+            title="Review"
+            tasks={tasks}
+            status="review"
+            handleDelete={handleDelete}
+            setActiveCard={setActiveCard}
+            onDrop={onDrop}
+          />
+          <Column
+            title="Done"
+            tasks={tasks}
+            status="done"
+            handleDelete={handleDelete}
+            setActiveCard={setActiveCard}
+            onDrop={onDrop}
+          />
 
-        <DeleteZone
-          handleDelete={() => activeCard !== null && handleDelete(activeCard)}
-        />
-
-        {/* <h1>Active card - {activeCard} </h1> */}
-      </section>
+          <DeleteZone
+            handleDelete={() => activeCard !== null && handleDelete(activeCard)}
+          />
+        </section>
+      </div>
     </>
   );
 };

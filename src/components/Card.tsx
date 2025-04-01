@@ -27,7 +27,8 @@ const Card = ({ title, setActiveCard, index, status, desc }: CardProps) => {
   return (
     <motion.div
         layout
-        // layoutId={"card"}
+        whileTap={{ scale: 1.05, rotate: 2 }}
+        transition={{ duration: 0.3 }}
         className={`flex flex-col bg-white gap-6 p-3 rounded-md border-[1px] ${getBorderColor()} cursor-grabbing group`} draggable
     
         onDragStart={() => { setActiveCard(index); setDragging(true); }}

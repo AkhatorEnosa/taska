@@ -7,7 +7,7 @@ interface DeleteZoneProps {
 const DeleteZone = ({ handleDelete }: DeleteZoneProps) => {
     const [deleteAreaActive, setDeleteAreaActive] = useState(false);
   return (
-    <div className={`fixed bg-white bottom-40 left-40 size-20 ${deleteAreaActive ? "scale-[250%]" : "scale-100"} text-center flex justify-center items-center rounded-full text-gray-400 transition-all duration-150`}
+    <div className={`fixed bg-white bottom-40 right-40 size-20 ${deleteAreaActive ? "scale-[250%]" : "scale-100"} text-center flex justify-center items-center rounded-full text-gray-400 transition-all duration-150`}
         onDragOver={(e) => {
             e.preventDefault();
             setDeleteAreaActive(true)}
