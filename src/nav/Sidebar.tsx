@@ -11,7 +11,7 @@ const Sidebar = () => {
       animate={{ width: !miniSidebar ? "20%" : "fit-content" }}
       transition={{ duration: 0.2 }}
       className={`flex flex-col justify-between py-10 bg-white text-black mt-10 shadow-lg`}>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full divide-y-[1px] divide-gray-200 border-t-[1px] border-b-[1px] border-gray-200">
         <SidebarListItem 
           title="Dashboard"
           icon="bi-house"
@@ -28,8 +28,8 @@ const Sidebar = () => {
           miniSidebar={miniSidebar}
         />
       </div>
-      <div className="relative flex justify-end w-full h-fit px-5 text-xl" onClick={() => setMiniSidebar(!miniSidebar)}>
-        <i className={`absolute bottom-10 -right-5 flex bi ${miniSidebar ? "bi-chevron-right" : "bi bi-chevron-left"} justify-center items-center size-8 rounded-full bg-white shadow transition-all duration-200 cursor-pointer`}></i>
+      <div className={`relative flex justify-end w-full h-fit px-5 text-xl`} onClick={() => setMiniSidebar(!miniSidebar)}>
+        <i className={`absolute bottom-10 -right-5 flex text-gray-500 bi ${miniSidebar ? "bi-chevron-right" : "bi bi-chevron-left"} justify-center items-center size-8 rounded-full bg-white shadow transition-all duration-200 cursor-pointer`}></i>
       </div>
     </motion.section>
   )

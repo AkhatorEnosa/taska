@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { CardContext } from "../context/CardContext";
 
 interface CardProps {
   title: string;
   desc: string;
-  handleDelete?: (id: number) => void;
   index: number;
-  setActiveCard: React.Dispatch<React.SetStateAction<number | null>>;
+  // setActiveCard: React.Dispatch<React.SetStateAction<number | null>>;
   status: string;
 }
 
-const Card = ({ title, setActiveCard, index, status, desc }: CardProps) => {
+const Card = ({ title, index, status, desc }: CardProps) => {
     const [dragging, setDragging] = useState(false);
+    
+    const {setActiveCard} = useContext(CardContext);
 
     // Define color based on status
     const getBorderColor = () => {
