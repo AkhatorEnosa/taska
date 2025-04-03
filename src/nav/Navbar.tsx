@@ -10,7 +10,7 @@ const Navbar = () => {
           </ul>
   
           <div>
-              <p>User Profile</p>
+              <p className="p-5 rounded-full border-[1px]"></p>
           </div>
       </div>
     )
