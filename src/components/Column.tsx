@@ -48,7 +48,7 @@ const Column: React.FC<ColumnProps> = ({ title, status, includeButton }) => {
             }
         </header>
 
-        <div className="flex flex-col">
+        <div className="relative flex flex-col overflow-clip">
             <DropArea onDrop={() => onDrop(status, 0)} status={status}/>
             {filteredTasks.length < 1 ? <h2 className="w-full text-center text-xs p-3 font-bold text-gray-500 bg-black/5 rounded-md">No task in field</h2> : tasks.map(
                 (task, index) =>

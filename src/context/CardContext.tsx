@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
-import DEFAULT_CARDS from "../constants/tasks.ts"; // Adjust the path as needed
+// import DEFAULT_CARDS from "../constants/tasks.ts"; // Adjust the path as needed
 
 interface Task {
   id: number;
@@ -29,7 +29,7 @@ const oldTasks = localStorage.getItem("tasks");
 
 export function CardProvider({ children }: { children: ReactNode }) {
     const [activeCard, setActiveCard] = useState<number | null>(null);
-    const [tasks, setTasks] = useState(oldTasks ? JSON.parse(oldTasks) : DEFAULT_CARDS);
+    const [tasks, setTasks] = useState(oldTasks ? JSON.parse(oldTasks) : []);
 
 
   useEffect(() => {
