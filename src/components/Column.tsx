@@ -4,6 +4,7 @@ import DropArea from "./DropArea";
 import Button from "./Button";
 import { useContext } from "react";
 import { CardContext } from "../context/CardContext";
+import { motion } from "framer-motion"; 
 
 interface ColumnProps {
   title: string;
@@ -32,7 +33,12 @@ const Column: React.FC<ColumnProps> = ({ title, status, includeButton }) => {
     };
 
   return (
-    <div className={`w-72 h-fit flex flex-col gap-5 rounded-lg shadow border-t-4 bg-white ${status == 'done' ? "border-t-green-200" : status == 'doing' ? "border-t-amber-200" : status == 'review' ? "border-t-purple-200" : "border-t-blue-200"} border-[1px] border-gray-300/20 p-2 shrink-0`}>
+    <motion.div 
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      layout
+      className={`w-72 h-fit flex flex-col gap-5 rounded-lg shadow border-t-4 bg-white ${status == 'done' ? "border-t-green-200" : status == 'doing' ? "border-t-amber-200" : status == 'review' ? "border-t-purple-200" : "border-t-blue-200"} border-[1px] border-gray-300/20 p-2 shrink-0`}>
         <header className="flex justify-between items-center">
             <p className="font-semibold">{title} <span className="font-normal text-gray-400">{`(${filteredTasks.length})`}</span></p>
             {includeButton 
@@ -65,7 +71,7 @@ const Column: React.FC<ColumnProps> = ({ title, status, includeButton }) => {
                     )
             )}
         </div>
-    </div>
+    </motion.div>
   )
 }
 
