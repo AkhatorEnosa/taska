@@ -3,14 +3,9 @@ import AddTaskModal from "./AddTaskModal";
 
 interface ButtonProps {
   status: string;
-  addTask: () => void;
-  taskTitle: string;
-  description: string;
-  handleTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleDescriptionChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const Button = ({ status, addTask, taskTitle, description, handleTitleChange, handleDescriptionChange }: ButtonProps) => {
+const Button = ({ status }: ButtonProps) => {
     const [showModal, setShowModal] = useState(false);
 
     const handleShowModal = () => setShowModal(!showModal);
@@ -23,11 +18,6 @@ const Button = ({ status, addTask, taskTitle, description, handleTitleChange, ha
         <AddTaskModal 
             showModal={showModal}
             handleCloseModal={handleShowModal}
-            addTask={addTask}
-            taskTitle={taskTitle}
-            description={description}
-            handleTitleChange={handleTitleChange}
-            handleDescriptionChange={handleDescriptionChange}
         />
     </>
   )

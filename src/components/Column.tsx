@@ -13,24 +13,10 @@ interface ColumnProps {
 }
 
 const Column: React.FC<ColumnProps> = ({ title, status, includeButton }) => {
-  const [taskTitle, setTaskTitle] = React.useState("");
-  const [description, setDescription] = React.useState("");
 
   const {onDrop, tasks} = useContext(CardContext);
 
     const filteredTasks = tasks.filter((task) => task.status === status);
-
-    const handleAddTask = (taskTitle: string, description: string) => {
-        const newTask = {
-            id: tasks.length + 1,
-            title: taskTitle,
-            description,
-            status,
-        };
-        tasks.push(newTask);
-        setTaskTitle("");
-        setDescription("");
-    };
 
   return (
     <motion.div 
@@ -45,16 +31,11 @@ const Column: React.FC<ColumnProps> = ({ title, status, includeButton }) => {
               && 
               <Button 
                 status={status}
-                taskTitle={taskTitle}
-                description={description}
-                handleTitleChange={(e) => setTaskTitle(e.target.value)}
-                handleDescriptionChange={(e) => setDescription(e.target.value)}
-                addTask={() => handleAddTask(taskTitle, description)}
               />
             }
         </header>
 
-        <div className="relative flex flex-col overflow-clip">
+        <div className="relative flex flex-col">
             <DropArea onDrop={() => onDrop(status, 0)} status={status}/>
             {filteredTasks.length < 1 ? <h2 className="w-full text-center text-xs p-3 font-bold text-gray-500 bg-black/5 rounded-md">No task in field</h2> : tasks.map(
                 (task, index) =>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { CardContext } from "../context/CardContext";
@@ -17,7 +17,13 @@ const Card = ({ title, index, status, desc }: CardProps) => {
     const [showOptions, setShowOptions] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     
-    const {setActiveCard, handleEditTask, handleDelete} = useContext(CardContext);
+    const {error, taskTitle, description, taskStatus, setTaskStatus, setTaskTitle, setDescription,  setActiveCard, getTask, handleEditTask, handleDelete} = useContext(CardContext);
+
+    useEffect(() => {
+      setTaskTitle(taskTitle ? taskTitle : title);
+      setDescription(description ? description : desc);
+      setTaskStatus(taskStatus ? taskStatus : status);
+    }, [title, desc, status, taskTitle, description, taskStatus, setTaskTitle, setDescription, setTaskStatus]);
 
     // Define color based on status
     const getBorderColor = () => {
@@ -35,24 +41,29 @@ const Card = ({ title, index, status, desc }: CardProps) => {
         layout
         // whileTap={{ scale: 1.05, rotate: 2 }}
         transition={{ duration: 0.3 }}
-        className={`flex flex-col bg-white gap-6 p-2 rounded-md border-[1px] ${getBorderColor()} cursor-auto group shadow-sm hover:shadow-none`} draggable
+        className={`flex flex-col bg-white gap-6 p-2 rounded-md border-[1px] ${getBorderColor()} cursor-auto group shadow-sm hover:shadow-none`} 
+        
+        draggable={showEditModal ? false : true}
     
         onDragStart={() => { setActiveCard(index); setDragging(true); }}
         onDragEnd={() => {setActiveCard(null); setDragging(false);}}
     >
         <div className="flex w-full justify-between items-center gap-10">
-            <div className="flex flex-col gap-2">
+            <div className="w-full flex flex-col gap-2">
               <div className="relative flex items-start justify-between gap-2">
                 <h2 className="text-sm font-semibold leading-4">{title}</h2>
-                <i className="bi bi-three-dots-vertical text-gray-400 hover:text-black cursor-pointer" onClick={() => setShowOptions(true)}></i>
-
-                {/* <div className="absolute right-0"> */}
+                <i className="bi bi-three-dots-vertical text-gray-400 hover:text-black size-5 p-2 active:bg-gray-200 rounded-full flex justify-center items-center cursor-pointer" onClick={() => setShowOptions(true)}></i>
+                
                   {showOptions && (
                     <>
                       <div className="w-screen h-screen fixed top-0 left-0 z-30" onClick={() => setShowOptions(false)}></div>
                       <div className="absolute w-[100px] top-5 right-0 bg-white shadow-lg rounded-md text-xs z-50">
-                        <p className="text-black hover:bg-blue-100 p-2 cursor-pointer" onClick={() => setShowEditModal(true)}>Edit</p>
-                        <p className="text-red-500 hover:bg-blue-100 p-2 cursor-pointer" onClick={() => handleDelete(index)}>Delete</p>
+                        <p className="text-black hover:bg-gray-200 p-2 cursor-pointer" onClick={() => {
+                            getTask(index);
+                            setShowEditModal(true);
+                           setShowOptions(false)}
+                          }>Edit</p>
+                        <p className="text-red-500 hover:bg-gray-200 p-2 cursor-pointer" onClick={() => handleDelete(index)}>Delete</p>
                       </div>
                     </>
                   )}
@@ -60,14 +71,11 @@ const Card = ({ title, index, status, desc }: CardProps) => {
                   {showEditModal && (
                     <>
                       <EditModal
-                        taskTitle={title}
-                        description={desc}
                         // status={status}
+                        index={index}
                         showModal={showEditModal}
-                        handleCloseModal={() => setShowEditModal(false)}
-                        // handleTitleChange={(e) => setTaskTitle(e.target.value)}
-                        // handleDescriptionChange={(e) => setDescription(e.target.value)}
-                        addTask={() => handleEditTask(title, desc)}
+                        handleCloseModal={() => error == "" && setShowEditModal(false)}
+                        updateTask={() => handleEditTask(index, taskTitle, description, taskStatus)}
                       />
                     </>
                   )}
