@@ -12,9 +12,9 @@ const Content: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="flex w-full h-full overflow-scroll">
+      <div className="flex w-full h-full overflow-clip">
         <Sidebar />
-        <div className="w-full h-full flex flex-col gap-10 py-20 mt-20 pt-10 px-10  overflow-scroll">
+        <div className="relative left-10 w-full h-full flex flex-col gap-10 py-20 mt-20 pt-10 px-10  overflow-scroll">
           <h3 className="bg-white p-3 rounded-md text-gray-500">
             <motion.span
               initial={{ opacity: 0, y: -20 }}

@@ -15,15 +15,27 @@ interface CardProps {
 const Card = ({ title, index, status, desc }: CardProps) => {
     const [dragging, setDragging] = useState(false);
     const [showOptions, setShowOptions] = useState(false);
-    const [showEditModal, setShowEditModal] = useState(false);
     
-    const {error, taskTitle, description, taskStatus, setTaskStatus, setTaskTitle, setDescription,  setActiveCard, getTask, handleEditTask, handleDelete} = useContext(CardContext);
+    const {  
+      taskTitle, 
+      description, 
+      taskStatus, 
+      showEditModal,
+      setTaskStatus, 
+      setTaskTitle, 
+      setDescription, 
+      setActiveCard, 
+      setShowEditModal,
+      getTask, 
+      handleEditTask, 
+      handleDelete
+    } = useContext(CardContext);
 
     useEffect(() => {
-      setTaskTitle(taskTitle ? taskTitle : title);
-      setDescription(description ? description : desc);
-      setTaskStatus(taskStatus ? taskStatus : status);
-    }, [title, desc, status, taskTitle, description, taskStatus, setTaskTitle, setDescription, setTaskStatus]);
+      setTaskTitle(taskTitle);
+      setDescription(description);
+      setTaskStatus(taskStatus);
+    }, [taskTitle, description, taskStatus]);
 
     // Define color based on status
     const getBorderColor = () => {
@@ -39,7 +51,6 @@ const Card = ({ title, index, status, desc }: CardProps) => {
   return (
     <motion.div
         layout
-        // whileTap={{ scale: 1.05, rotate: 2 }}
         transition={{ duration: 0.3 }}
         className={`flex flex-col bg-white gap-6 p-2 rounded-md border-[1px] ${getBorderColor()} cursor-auto group shadow-sm hover:shadow-none`} 
         
@@ -74,8 +85,8 @@ const Card = ({ title, index, status, desc }: CardProps) => {
                         // status={status}
                         index={index}
                         showModal={showEditModal}
-                        handleCloseModal={() => error == "" && setShowEditModal(false)}
-                        updateTask={() => handleEditTask(index, taskTitle, description, taskStatus)}
+                        // handleCloseModal={() => setShowEditModal(false)}
+                        updateTask={(index, taskTitle, description, taskStatus) => handleEditTask(index, taskTitle, description, taskStatus)}
                       />
                     </>
                   )}

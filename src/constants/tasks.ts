@@ -28,7 +28,7 @@ const DEFAULT_CARDS: {
       title: "Document Notifications service", 
       description: "Document the Notifications service for the team",
       id: 4, 
-      status: "backlog" 
+      status: "review" 
     },
     // TODO
     {

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import CardContext from "../context/CardContext";
+import { motion } from "framer-motion";
 
 interface ModalProps {
     showModal: boolean;
@@ -40,10 +41,12 @@ const AddTaskModal = ({showModal, handleCloseModal} : ModalProps) => {
                     onChange={(e) => setDesc(e.target.value)}
                     defaultValue={desc}
                 ></textarea>
-                <button className="bg-blue-400 hover:bg-blue-500 text-white text-sm py-2 px-2 rounded-md cursor-pointer transition-all duration-150" type="submit" onClick={() => { 
+                <motion.button 
+                    whileTap={{ scale: 0.98, boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.7)" }}
+                    className="bg-blue-400 hover:bg-blue-500 text-white text-sm py-2 px-2 rounded-md cursor-pointer transition-all duration-150" type="submit" onClick={() => { 
                     handleAddTask(title, desc); 
-                    handleCloseModal(); 
-                }}>Add</button>
+                        handleCloseModal(); 
+                }}>Add</motion.button>
             </div>
         </div>
     </dialog>

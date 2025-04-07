@@ -12,7 +12,7 @@ const Sidebar = () => {
       transition={{ duration: 0.3 }}
       // onMouseEnter={() => setMiniSidebar(true)}
       // onMouseLeave={() => setMiniSidebar(false)}
-      className={`flex flex-col justify-between py-10 bg-white text-black mt-10 shadow-lg`}>
+      className={`fixed flex flex-col h-full justify-between py-10 bg-white text-black top-20 shadow-lg z-50`}>
       <div className="flex flex-col w-full divide-y-[1px] divide-gray-200 border-t-[1px] border-b-[1px] border-gray-200">
         <SidebarListItem 
           title="Dashboard"

@@ -20,12 +20,14 @@ export const CardContext = createContext<{
   setTaskStatus: React.Dispatch<React.SetStateAction<string>>;
   description: string;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
-  error: string;
-  setError: React.Dispatch<React.SetStateAction<string>>;
+  error: boolean;
+  setError: React.Dispatch<React.SetStateAction<boolean>>;
+  showEditModal: boolean;
+  setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
   getTask: (index: number) => void;
   onDrop: (status: string, position: number) => void;
   handleDelete: (activeCard: number) => void;
-  handleEditTask: (activeCard: number, taskTitle: string, description: string, taskStatus: string) => void;
+  handleEditTask: (index: number, taskTitle: string, description: string, taskStatus: string) => void;
   handleAddTask: (taskTitle: string, description: string) => void;
 }>({
   activeCard: null,
@@ -38,8 +40,10 @@ export const CardContext = createContext<{
   setTaskStatus: () => {},
   description: "",
   setDescription: () => {},
-  error: "",
+  error: false,
   setError: () => {},
+  showEditModal: false,
+  setShowEditModal: () => {},
   onDrop: () => {},
   handleDelete: () => {},
   handleEditTask: () => {},
@@ -55,12 +59,12 @@ export function CardProvider({ children }: { children: ReactNode }) {
     const [taskTitle, setTaskTitle] = useState("");
     const [description, setDescription] = useState("");
     const [taskStatus, setTaskStatus] = useState("");
-    const [error, setError] = useState("");
+    const [error, setError] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
 
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    console.log(tasks)
   }, [tasks]);
 
 
@@ -81,55 +85,54 @@ export function CardProvider({ children }: { children: ReactNode }) {
       setActiveCard(null)
   };
 
-  const getTask = (index: number) => {
-    const task = tasks[index];
+  const getTask = (activeCard: number) => {
+    console.log(activeCard)
+    const task = tasks[activeCard];
+    if (!task) return;
+    setActiveCard(activeCard);
     setTaskTitle(task.title);
     setDescription(task.description);
     setTaskStatus(task.status);
 }
 
-  const handleEditTask = (activeCard: number, taskTitle: string, description: string, taskStatus: string) => {
+  const handleEditTask = (index: number, taskTitle: string, description: string, taskStatus: string) => {
     if(activeCard === null || activeCard === undefined) return;
 
-    if(taskTitle !== "" || description !== "") {
-      const taskToEdit = tasks[activeCard];
-      const otherTasks: Task[] = tasks.filter((_: Task, index: number) => index !== activeCard);
+    if(taskTitle.trim() !== "" && description.trim() !== "") {
+      console.log(activeCard)
+      // const taskToEdit = tasks[activeCard];
+      // console.log(taskToEdit)
+      // const otherTasks: Task[] = tasks.filter((task: Task) => task.id !== taskToEdit.id);
+      console.log(tasks)
   
-      otherTasks.splice(activeCard, 0, {
-          ...taskToEdit,
-          title: taskTitle,
-          description: description,
-          status: taskStatus,
-      });
+      // otherTasks.splice(activeCard, 0, {
+      //     ...taskToEdit,
+      //     title: taskTitle,
+      //     description: description,
+      //     status: taskStatus,
+      // });
   
-      setTasks(otherTasks);
-      setActiveCard(null)
+      // setTasks(otherTasks);
+      // setActiveCard(null)
+      // console.log({
+      //   id: taskToEdit.id,
+      //   title: taskTitle,
+      //   description: description,
+      //   status: taskStatus,
+      // })
+
+      setShowEditModal(false);
+      // setTaskTitle("");
+      // setDescription("");
+      // setTaskStatus("");
+      setError(false);
+      // setActiveCard(null);
     } else {
-      setError("Please fill in the task title or description");
+      console.log("Please fill in all fields");
+      setError(true);
+      setShowEditModal(true)
     }
   };
-
-
-  // const handleColumn = (status: string) => {
-
-  //   if(activeCard === null || activeCard === undefined) return;
-
-  //   const taskToMove = tasks[activeCard];
-  //   // console.log(taskToMove);
-  //   const otherTasks: Task[] = tasks.filter((_: Task, index: number) => index !== activeCard);
-
-  //   // if(activeCard === position) return; 
-  //   // if(position - activeCard === 1) return;
-  //   otherTasks.splice(position, 0, {
-  //       ...taskToMove,
-  //       status: status,
-  //   });
-
-  //   setTasks(otherTasks);
-  //   setActiveCard(null)
-  // };
-
-
 
   const handleAddTask = (title: string, desc: string) => {
     const newTask = {
@@ -138,7 +141,10 @@ export function CardProvider({ children }: { children: ReactNode }) {
         description: desc,
         status: "todo",
     };
-    tasks.push(newTask);
+    const updatedTasks = [...tasks, newTask];
+    // console.log(updatedTasks);
+    // setTasks((prevTasks: Task[]) => [...prevTasks, newTask]);
+    setTasks(updatedTasks);
     console.log(tasks)
     setTaskTitle("");
     setDescription("");
@@ -158,6 +164,7 @@ export function CardProvider({ children }: { children: ReactNode }) {
         taskStatus, setTaskStatus,
         description, setDescription,
         error, setError,
+        showEditModal, setShowEditModal,
         onDrop, 
         handleEditTask,
         handleDelete,

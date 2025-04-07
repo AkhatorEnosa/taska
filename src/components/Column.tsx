@@ -16,7 +16,7 @@ const Column: React.FC<ColumnProps> = ({ title, status, includeButton }) => {
 
   const {onDrop, tasks} = useContext(CardContext);
 
-    const filteredTasks = tasks.filter((task) => task.status === status);
+    const filteredTasks = tasks?.filter((task) => task.status === status);
 
   return (
     <motion.div 

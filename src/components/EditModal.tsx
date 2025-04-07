@@ -1,28 +1,27 @@
-import React from 'react';
 import { useContext } from "react";
 import { CardContext } from "../context/CardContext";
+import { motion } from "framer-motion";
 
 interface EditModalProps {
   index: number;
   showModal: boolean;
-  handleCloseModal: () => void;
-  updateTask: () => void;
+  updateTask: (index: number, title: string, description: string, status: string) => void;
 }
 
-const EditModal: React.FC<EditModalProps> = ({ showModal, handleCloseModal, updateTask }) => {
+const EditModal: React.FC<EditModalProps> = ({ index, showModal, updateTask }) => {
 
-    const { error, taskTitle, description, taskStatus, setTaskStatus, setTaskTitle, setDescription} = useContext(CardContext)
+    const { error, taskTitle, description, taskStatus, setTaskStatus, setTaskTitle, setDescription, setShowEditModal} = useContext(CardContext)
 
   return (
     <dialog className={`fixed flex top-0 left-0 w-screen h-screen bg-transparent justify-center items-center z-[60] ${showModal ? "scale-100 opacity-100" : "scale-0 opacity-0"} transition-all duration-150 ease-in-out overflow-clip`}>
-        <div className="absolute w-full h-full bg-white/90 z-40" onClick={handleCloseModal}></div>
+        <div className="absolute w-full h-full bg-white/90 z-40" onClick={() => setShowEditModal(false)}></div>
 
         <div className={`w-[70%] md:w-[50%] lg:w-[30%] flex flex-col gap-5 p-4 bg-white rounded-md shadow-lg border-[1px] border-gray-200 z-50`}>
             <div className="bg-white rounded-md">
-                <h2 className="text-lg font-semibold">Add Task</h2>
+                <h2 className="text-lg font-semibold">Edit Task</h2>
             </div>
 
-            {error !== "" && <div className='w-full flex justify-center items-center px-2 py-3 bg-red-100 border-[1px] border-red-500 text-red-500 text-sm font-semibold rounded-md'>
+            {error && <div className='w-full flex justify-center items-center px-2 py-3 bg-red-100 border-[1px] border-red-500 text-red-500 text-sm font-semibold rounded-md'>
                 <i className="bi bi-exclamation-triangle-fill"></i>
                 <span className="ml-2">Please fill in all fields</span>
             </div>}
@@ -34,8 +33,7 @@ const EditModal: React.FC<EditModalProps> = ({ showModal, handleCloseModal, upda
                     type="text" 
                     name="taskName" 
                     defaultValue={taskTitle}
-                    onChange={(e) =>{ setTaskTitle(e.target.value);
-                        console.log(taskTitle)}}
+                    onChange={(e) =>{ setTaskTitle(e.target.value)}}
                 />
                 <label className="font-semibold" htmlFor="taskDescription">Description</label>
                 <textarea 
@@ -56,7 +54,11 @@ const EditModal: React.FC<EditModalProps> = ({ showModal, handleCloseModal, upda
                     <option value="review">Review</option>
                     <option value="done">Done</option>
                 </select>
-                <button className="bg-blue-400 hover:bg-blue-500 text-white text-sm py-2 px-2 rounded-md cursor-pointer transition-all duration-150" type="submit" onClick={() => { updateTask(); handleCloseModal(); }}>Add</button>
+                <motion.button 
+                  whileTap={{ scale: 0.98, boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.7)" }}
+                  className="bg-blue-400 hover:bg-blue-500 text-white text-sm py-2 px-2 rounded-md cursor-pointer transition-all duration-150" 
+                  type="submit" 
+                  onClick={() => {updateTask(index, taskTitle, description, taskStatus);}}>Update</motion.button>
             </div>
         </div>
     </dialog>
