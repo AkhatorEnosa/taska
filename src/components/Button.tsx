@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useContext } from "react";
 import AddTaskModal from "./AddTaskModal";
+import CardContext from "../context/CardContext";
 
 interface ButtonProps {
   status: string;
 }
 
 const Button = ({ status }: ButtonProps) => {
-    const [showModal, setShowModal] = useState(false);
+  const { showModal, setShowModal } = useContext(CardContext);
 
     const handleShowModal = () => setShowModal(!showModal);
   return (
@@ -15,9 +16,7 @@ const Button = ({ status }: ButtonProps) => {
         <i className="bi bi-plus-lg"></i>Add
         </button>
 
-        <AddTaskModal 
-            showModal={showModal}
-            handleCloseModal={handleShowModal}
+        <AddTaskModal
         />
     </>
   )

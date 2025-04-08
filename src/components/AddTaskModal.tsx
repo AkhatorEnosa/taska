@@ -2,13 +2,8 @@ import { useContext, useState } from "react";
 import CardContext from "../context/CardContext";
 import { motion } from "framer-motion";
 
-interface ModalProps {
-    showModal: boolean;
-    handleCloseModal: () => void;
-}
-
-const AddTaskModal = ({showModal, handleCloseModal} : ModalProps) => {
-    const{ handleAddTask } = useContext(CardContext)
+const AddTaskModal = () => {
+    const{ error, handleAddTask, showModal, handleCloseModal } = useContext(CardContext)
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
 
@@ -21,6 +16,11 @@ const AddTaskModal = ({showModal, handleCloseModal} : ModalProps) => {
             <div className="bg-white rounded-md">
                 <h2 className="text-lg font-semibold">Add Task</h2>
             </div>
+
+            {error && <div className='w-full flex justify-center items-center px-2 py-3 bg-red-100 border-[1px] border-red-500 text-red-500 text-sm font-semibold rounded-md'>
+                <i className="bi bi-exclamation-triangle-fill"></i>
+                <span className="ml-2">Please fill in all fields</span>
+            </div>}
 
             <div className="flex flex-col gap-2 text-xs">
                 <label className="font-semibold" htmlFor="taskName">Title</label>
@@ -44,8 +44,7 @@ const AddTaskModal = ({showModal, handleCloseModal} : ModalProps) => {
                 <motion.button 
                     whileTap={{ scale: 0.98, boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.7)" }}
                     className="bg-blue-400 hover:bg-blue-500 text-white text-sm py-2 px-2 rounded-md cursor-pointer transition-all duration-150" type="submit" onClick={() => { 
-                    handleAddTask(title, desc); 
-                        handleCloseModal(); 
+                    handleAddTask(title, desc);
                 }}>Add</motion.button>
             </div>
         </div>
