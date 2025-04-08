@@ -31,7 +31,7 @@ const Sidebar = () => {
         />
       </div>
       <div className={`relative flex justify-end w-full h-fit px-5 text-xl`} onClick={() => setMiniSidebar(!miniSidebar)}>
-        <i className={`absolute bottom-10 -right-5 flex text-gray-500 bi bi-chevron-right ${miniSidebar ? "rotate-180" : "rotate-0"} justify-center items-center size-8 rounded-full bg-white shadow transition-all duration-300 cursor-pointer`}></i>
+        <i className={`absolute bottom-20 -right-5 flex text-gray-500 bi bi-chevron-right ${miniSidebar ? "rotate-180" : "rotate-0"} justify-center items-center size-8 rounded-full bg-white shadow transition-all duration-300 cursor-pointer`}></i>
       </div>
     </motion.section>
   )

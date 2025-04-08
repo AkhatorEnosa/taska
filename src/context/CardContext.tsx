@@ -61,7 +61,7 @@ const oldTasks = localStorage.getItem("tasks");
 
 export function CardProvider({ children }: { children: ReactNode }) {
     const [activeCard, setActiveCard] = useState<number | null>(null);
-    const [tasks, setTasks] = useState(oldTasks ? JSON.parse(oldTasks) : DEFAULT_CARDS);
+    const [tasks, setTasks] = useState(oldTasks ? JSON.parse(oldTasks) : []);
     const [taskTitle, setTaskTitle] = useState("");
     const [description, setDescription] = useState("");
     const [taskStatus, setTaskStatus] = useState("");
