@@ -3,12 +3,11 @@ import { CardContext } from "../context/CardContext";
 import { motion } from "framer-motion";
 
 interface EditModalProps {
-  index: number;
   showModal: boolean;
-  updateTask: (index: number, title: string, description: string, status: string) => void;
+  updateTask: ( title: string, description: string, status: string) => void;
 }
 
-const EditModal: React.FC<EditModalProps> = ({ index, showModal, updateTask }) => {
+const EditModal: React.FC<EditModalProps> = ({ showModal, updateTask }) => {
 
     const { error, taskTitle, description, taskStatus, setTaskStatus, setTaskTitle, setDescription, handleCloseModal} = useContext(CardContext)
 
@@ -58,7 +57,7 @@ const EditModal: React.FC<EditModalProps> = ({ index, showModal, updateTask }) =
                   whileTap={{ scale: 0.98, boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.7)" }}
                   className="bg-blue-400 hover:bg-blue-500 text-white text-sm py-2 px-2 rounded-md cursor-pointer transition-all duration-150" 
                   type="submit" 
-                  onClick={() => {updateTask(index, taskTitle, description, taskStatus);}}>Update</motion.button>
+                  onClick={() => {updateTask(taskTitle, description, taskStatus);}}>Update</motion.button>
             </div>
         </div>
     </dialog>

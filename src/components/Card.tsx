@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { CardContext } from "../context/CardContext";
@@ -83,10 +83,10 @@ const Card = ({ title, index, status, desc }: CardProps) => {
                     <>
                       <EditModal
                         // status={status}
-                        index={index}
+                        // index={index}
                         showModal={showEditModal}
                         // handleCloseModal={() => setShowEditModal(false)}
-                        updateTask={(index, taskTitle, description, taskStatus) => handleEditTask(index, taskTitle, description, taskStatus)}
+                        updateTask={(taskTitle, description, taskStatus) => handleEditTask(taskTitle, description, taskStatus)}
                       />
                     </>
                   )}

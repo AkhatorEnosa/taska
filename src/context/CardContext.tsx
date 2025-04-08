@@ -29,7 +29,7 @@ export const CardContext = createContext<{
   getTask: (index: number) => void;
   onDrop: (status: string, position: number) => void;
   handleDelete: (activeCard: number) => void;
-  handleEditTask: (index: number, taskTitle: string, description: string, taskStatus: string) => void;
+  handleEditTask: ( taskTitle: string, description: string, taskStatus: string) => void;
   handleAddTask: (title: string, desc: string) => void;
   handleCloseModal: () => void;
 }>({
@@ -109,14 +109,14 @@ export function CardProvider({ children }: { children: ReactNode }) {
     setTaskStatus(task.status);
 }
 
-  const handleEditTask = (index: number, taskTitle: string, description: string, taskStatus: string) => {
+  const handleEditTask = ( taskTitle: string, description: string, taskStatus: string) => {
     if(activeCard === null || activeCard === undefined) return;
 
     if(taskTitle.trim() !== "" && description.trim() !== "") {
-      console.log(activeCard)
+      // console.log(activeCard)
       const taskToEdit = tasks[activeCard];
       const otherTasks: Task[] = tasks.filter((_: Task, index: number) => index !== activeCard);
-      console.log(otherTasks)
+      // console.log(otherTasks)
   
       otherTasks.splice(activeCard, 0, {
           ...taskToEdit,
