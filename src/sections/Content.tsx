@@ -24,7 +24,7 @@ const Content: React.FC = () => {
               Welcome, User
             </motion.span>
           </h3>
-          <section className="flex gap-3 h-full w-full overflow-x-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <section className="flex gap-3 h-full w-full px-10 lg:px-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <Column 
               title="To do"
               status="todo"
