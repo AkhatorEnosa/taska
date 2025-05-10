@@ -8,7 +8,6 @@ interface CardProps {
   title: string;
   desc: string;
   index: number;
-  // setActiveCard: React.Dispatch<React.SetStateAction<number | null>>;
   status: string;
 }
 
