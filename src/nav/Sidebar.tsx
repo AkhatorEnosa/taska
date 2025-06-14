@@ -7,13 +7,13 @@ const Sidebar = () => {
   
   return (
     <motion.section
-      initial={{ width: "auto" }}
-      animate={{ width: miniSidebar ? "20%" : "fit-content" }}
-      transition={{ duration: 0.3 }}
+      // initial={{ width: "auto" }}
+      // animate={{ width: miniSidebar ? "20%" : "fit-content" }}
+      // transition={{ duration: 0.3 }}
       // onMouseEnter={() => setMiniSidebar(true)}
       // onMouseLeave={() => setMiniSidebar(false)}
-      className={`fixed flex flex-col h-full justify-between py-10 bg-white text-black top-20 shadow-lg z-50`}>
-      <div className="flex flex-col w-full divide-y-[1px] divide-gray-200 border-t-[1px] border-b-[1px] border-gray-200">
+      className={`relative flex flex-col h-full justify-between py-10 bg-white text-black top-20 shadow-lg z-50`}>
+      <div className={`flex flex-col divide-y-[1px] divide-gray-200 border-t-[1px] border-b-[1px] border-gray-200`}>
         <SidebarListItem 
           title="Dashboard"
           icon="bi-house"
