@@ -22,7 +22,7 @@ const Content: React.FC = () => {
     const handleScroll = () => {
       if (scrollContainerRef.current) {
         const scrollTop = scrollContainerRef.current.scrollTop;
-        setShowButton(scrollTop > 300);
+        setShowButton(scrollTop > 100);
       }
     };
 
@@ -51,7 +51,7 @@ const Content: React.FC = () => {
           </h3>
           <section
             ref={scrollContainerRef}
-            className="group flex gap-3 h-full w-full overflow-scroll pb-10 justify-start lg;pr-0">
+            className="group flex gap-3 bg-amber-100 h-full w-full overflow-scroll pb-10 justify-start lg;pr-0">
             <Column 
               title="To do"
               status="todo"
