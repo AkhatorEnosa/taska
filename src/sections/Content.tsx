@@ -78,14 +78,14 @@ const Content: React.FC = () => {
             />
 
           {showButton && (
-            <div className="fixed bottom-6 right-6 z-50">
+            <div className="fixed flex items-center justify-between w-full bottom-0 z-50">
               <button
                 onClick={()=> handleScrollToTop()}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-all duration-200"
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-t-full shadow-lg transition-all duration-200"
                 title="Back to top"
                 aria-label="Back to top"
               >
-                ⬆️
+                <i className="bi bi-arrow-up"></i>
               </button>
             </div>
           )}
