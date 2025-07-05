@@ -22,8 +22,8 @@ const Content: React.FC = () => {
     const container = scrollContainerRef.current;
   
     const handleScroll = () => {
-      console.log(container?.scrollTop);
-      if (container && container.scrollTop > 200) {
+      // console.log(container?.scrollTop);
+      if (container && container.scrollTop > 50) {
         setShowButton(true);
       } else {
         setShowButton(false);
@@ -58,7 +58,7 @@ const Content: React.FC = () => {
           </h3>
           <section
             ref={scrollContainerRef}
-            className="group flex gap-3 bg-amber-100 h-full w-full overflow-scroll pb-10 justify-start lg;pr-0">
+            className="group flex gap-3 h-full w-full overflow-scroll pb-10 justify-start lg;pr-0">
             <Column 
               title="To do"
               status="todo"
