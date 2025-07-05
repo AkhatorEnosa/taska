@@ -19,20 +19,26 @@ const Content: React.FC = () => {
   }
 
   useEffect(() => {
+    const container = scrollContainerRef.current;
+  
     const handleScroll = () => {
-      if (scrollContainerRef.current) {
-        const scrollTop = scrollContainerRef.current.scrollTop;
-        setShowButton(scrollTop > 100);
+      if (container && container.scrollTop > 200) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
       }
     };
-
-    const currentRef = scrollContainerRef.current;
-    currentRef?.addEventListener('scroll', handleScroll);
-
+  
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+    }
+  
     return () => {
-      currentRef?.removeEventListener('scroll', handleScroll);
+      if (container) {
+        container.removeEventListener('scroll', handleScroll);
+      }
     };
-  }, [scrollContainerRef]);
+  }, []);
 
   return (
     <>
@@ -73,7 +79,7 @@ const Content: React.FC = () => {
           {showButton && (
             <div className="fixed bottom-6 right-6 z-50">
               <button
-                onClick={handleScrollToTop}
+                onClick={()=> handleScrollToTop()}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-all duration-200"
                 title="Back to top"
                 aria-label="Back to top"
