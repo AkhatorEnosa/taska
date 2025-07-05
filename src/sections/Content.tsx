@@ -14,7 +14,7 @@ const Content: React.FC = () => {
       <Navbar />
       <div className="flex w-full h-full overflow-clip">
         <Sidebar />
-        <div className="relative left-10 w-full h-full flex flex-col gap-10 py-20 mt-20 pt-10 px-5 overflow-scroll">
+        <div className="relative w-full h-full flex flex-col gap-10 py-20 mt-20 pt-10 px-5 overflow-scroll">
           <h3 className="bg-white p-3 rounded-md text-gray-500">
             <motion.span
               initial={{ opacity: 0, y: -20 }}
@@ -24,7 +24,7 @@ const Content: React.FC = () => {
               Welcome, User
             </motion.span>
           </h3>
-          <section className="flex gap-3 h-full w-full overflow-x-scroll pr-18 lg:justify-center lg;pr-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <section className="flex gap-3 bg-red-100 h-full w-full overflow-scroll justify-start lg;pr-0">
             <Column 
               title="To do"
               status="todo"
