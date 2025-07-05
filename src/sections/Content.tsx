@@ -5,9 +5,20 @@ import Navbar from "../nav/Navbar.tsx";
 import DeleteZone from "../components/DeleteZone.tsx";
 import Sidebar from "../nav/Sidebar.tsx";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 
 
 const Content: React.FC = () => {
+  const scrollToTopRef = useRef<HTMLButtonElement>(null);
+
+  const handleScrollToTop = () => {
+    const el = scrollToTopRef.current;
+    if (el) {
+      el.style.height = 'auto'; // Reset height
+      el.style.height = `${el.scrollHeight}px`; // Set to scrollHeight
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   return (
     <>
@@ -44,15 +55,16 @@ const Content: React.FC = () => {
             />
 
             <div className="fixed flex w-full justify-center items-center bottom-0 lg:-bottom-41 lg:group-hover:bottom-0 duration-150">
-              <a
-                href="#top"
+              <button
+                ref={scrollToTopRef}
+                onClick={() => handleScrollToTop()}
+                type="button"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-t-full shadow-lg transition-all duration-200"
                 title="Back to top"
                 aria-label="Back to top"
-                role="button"
               >
                 <i className="bi bi-arrow-up"></i>
-              </a>
+              </button>
             </div>
 
             <DeleteZone />

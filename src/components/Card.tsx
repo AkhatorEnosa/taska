@@ -51,7 +51,7 @@ const Card = ({ title, index, status, desc }: CardProps) => {
     <motion.div
         layout
         transition={{ duration: 0.3 }}
-        className={`flex flex-col bg-white gap-6 p-2 rounded-md border-[1px] ${getBorderColor()} cursor-auto group shadow-sm hover:shadow-none`} 
+        className={`flex flex-col bg-white gap-6 p-2 rounded-md border-[1px] ${getBorderColor()} cursor-auto shadow-sm hover:shadow-none`} 
         
         draggable={showEditModal ? false : true}
     
@@ -90,7 +90,7 @@ const Card = ({ title, index, status, desc }: CardProps) => {
                     </>
                   )}
               </div>
-                <p className="text-gray-400 line-clamp-1 group-hover:line-clamp-none text-xs">{desc}</p>
+                <p className="text-gray-400 line-clamp-1 hover:line-clamp-none text-xs">{desc}</p>
             </div>
             {/* <p>Creator Image</p> */}
         </div>
