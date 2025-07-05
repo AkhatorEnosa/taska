@@ -22,6 +22,7 @@ const Content: React.FC = () => {
     const container = scrollContainerRef.current;
   
     const handleScroll = () => {
+      console.log(container?.scrollTop);
       if (container && container.scrollTop > 200) {
         setShowButton(true);
       } else {
