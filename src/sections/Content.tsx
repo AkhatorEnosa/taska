@@ -24,7 +24,7 @@ const Content: React.FC = () => {
               Welcome, User
             </motion.span>
           </h3>
-          <section className="flex gap-3 bg-red-100 h-full w-full overflow-scroll justify-start lg;pr-0">
+          <section id="top" className="group flex gap-3 h-full w-full overflow-scroll pb-10 justify-start lg;pr-0">
             <Column 
               title="To do"
               status="todo"
@@ -42,6 +42,18 @@ const Content: React.FC = () => {
               title="Done"
               status="done"
             />
+
+            <div className="fixed flex w-full justify-center items-center bottom-0 lg:-bottom-41 lg:group-hover:bottom-0 duration-150">
+              <a
+                href="#top"
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-t-full shadow-lg transition-all duration-200"
+                title="Back to top"
+                aria-label="Back to top"
+                role="button"
+              >
+                <i className="bi bi-arrow-up"></i>
+              </a>
+            </div>
 
             <DeleteZone />
           </section>
