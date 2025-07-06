@@ -152,7 +152,7 @@ export function CardProvider({ children }: { children: ReactNode }) {
             description: desc,
             status: "todo",
         };
-        const updatedTasks = [newTask,...tasks];
+        const updatedTasks = [...tasks, newTask];
         setTasks(updatedTasks);
         setTaskTitle("");
         setDescription("");
