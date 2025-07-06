@@ -71,7 +71,8 @@ const Card = ({ title, index, status, desc }: CardProps) => {
                         <p className="text-black hover:bg-gray-200 p-2 cursor-pointer" onClick={() => {
                             getTask(index);
                             setShowEditModal(true);
-                           setShowOptions(false)}
+                           setShowOptions(false)
+                          }
                           }>Edit</p>
                         <p className="text-red-500 hover:bg-gray-200 p-2 cursor-pointer" onClick={() => handleDelete(index)}>Delete</p>
                       </div>
