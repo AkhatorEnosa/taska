@@ -58,7 +58,7 @@ const Content: React.FC = () => {
           </h3>
           <section
             ref={scrollContainerRef}
-            className="group flex gap-3 h-full w-full overflow-scroll pb-10 justify-start lg;pr-0">
+            className="group flex lg:grid grid-cols-4 gap-3 h-full w-full overflow-scroll pb-10 justify-start lg;pr-0">
             <Column 
               title="To do"
               status="todo"

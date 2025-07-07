@@ -24,7 +24,7 @@ const Column: React.FC<ColumnProps> = ({ title, status, includeButton }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       layout
-      className={`w-72 h-fit flex flex-col gap-5 rounded-[14px] shadow border-t-4 bg-white ${status == 'done' ? "border-t-green-200" : status == 'doing' ? "border-t-amber-200" : status == 'review' ? "border-t-purple-200" : "border-t-blue-200"} border-[1px] border-gray-300/20 p-2 shrink-0`}>
+      className={`w-72 lg:w-full h-fit flex flex-col gap-5 rounded-[14px] shadow border-t-4 bg-white ${status == 'done' ? "border-t-green-200" : status == 'doing' ? "border-t-amber-200" : status == 'review' ? "border-t-purple-200" : "border-t-blue-200"} border-[1px] border-gray-300/20 p-2 shrink-0`}>
         <header className="flex justify-between items-center">
             <p className="font-semibold">{title} <span className="font-normal text-gray-400">{`(${filteredTasks.length})`}</span></p>
             {includeButton 
