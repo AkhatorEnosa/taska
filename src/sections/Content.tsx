@@ -58,24 +58,26 @@ const Content: React.FC = () => {
           </h3>
           <section
             ref={scrollContainerRef}
-            className="group flex lg:grid grid-cols-4 gap-3 h-full w-full overflow-scroll pb-10 justify-start lg;pr-0">
-            <Column 
-              title="To do"
-              status="todo"
-              includeButton={true}
-            />
-            <Column
-              title="In Progress"
-              status="doing"
-            />
-            <Column
-              title="Review"
-              status="review"
-            />
-            <Column
-              title="Done"
-              status="done"
-            />
+            className="group flex h-full w-full lg:justify-center overflow-scroll pb-10  lg;pr-0">
+              <div className="max-w-[1600px] flex lg:grid grid-cols-4 gap-3">
+                <Column 
+                  title="To do"
+                  status="todo"
+                  includeButton={true}
+                />
+                <Column
+                  title="In Progress"
+                  status="doing"
+                />
+                <Column
+                  title="Review"
+                  status="review"
+                />
+                <Column
+                  title="Done"
+                  status="done"
+                />
+              </div>
 
           {showButton && (
             <div className="fixed flex items-center justify-center w-full bottom-0 z-50">
